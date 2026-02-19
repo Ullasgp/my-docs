@@ -2,166 +2,180 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Documentation Hub</title>
+<title>Enterprise Documentation Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
-  }
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",Arial,sans-serif}
 
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: #f7f9fc;
-  }
+body{background:#f4f6fb;color:#222}
 
-  /* ===== Header ===== */
-  header {
-    background: #0d47a1;
-    color: white;
-    padding: 16px 24px;
-    font-size: 22px;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
+/* ===== Header ===== */
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#0b3d91;
+  color:#fff;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
 
-  /* ===== Layout ===== */
-  .container {
-    display: flex;
-    flex: 1;
-  }
+.header-left{display:flex;align-items:center;gap:12px;font-weight:600;font-size:20px}
 
-  /* ===== Sidebar ===== */
-  nav {
-    width: 260px;
-    background: white;
-    border-right: 1px solid #e0e0e0;
-    padding: 20px;
-    position: sticky;
-    top: 0;
-    height: calc(100vh - 64px);
-    overflow-y: auto;
-  }
+.menu-btn{
+  font-size:22px;
+  cursor:pointer;
+  display:none;
+}
 
-  nav h3 {
-    margin-bottom: 15px;
-    color: #0d47a1;
-  }
+/* ===== Layout ===== */
+.layout{display:flex;min-height:calc(100vh - 56px)}
 
-  nav a {
-    display: block;
-    padding: 10px 12px;
-    margin-bottom: 6px;
-    color: #333;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: 0.2s;
-    font-size: 14px;
-  }
+/* ===== Sidebar ===== */
+.sidebar{
+  width:270px;
+  background:#fff;
+  border-right:1px solid #e0e0e0;
+  padding:18px;
+  overflow-y:auto;
+  transition:.3s;
+}
 
-  nav a:hover {
-    background: #e3f2fd;
-    color: #0d47a1;
-  }
+.sidebar h3{color:#0b3d91;margin-bottom:10px}
 
-  nav a.active {
-    background: #0d47a1;
-    color: white;
-    font-weight: 500;
-  }
+.search-box{
+  width:100%;
+  padding:8px;
+  margin-bottom:15px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
 
-  /* ===== Content ===== */
-  main {
-    flex: 1;
-    padding: 40px;
-    background: #f7f9fc;
-  }
+.nav-group{margin-bottom:12px}
 
-  section {
-    background: white;
-    padding: 28px;
-    border-radius: 10px;
-    margin-bottom: 40px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
+.group-title{
+  font-weight:600;
+  padding:8px;
+  cursor:pointer;
+  background:#eef3ff;
+  border-radius:6px;
+  margin-bottom:6px;
+}
 
-  section h2 {
-    color: #0d47a1;
-    margin-bottom: 12px;
-  }
+.nav-links a{
+  display:block;
+  padding:7px 10px;
+  text-decoration:none;
+  color:#333;
+  border-radius:5px;
+  font-size:14px;
+}
 
-  section h3 {
-    margin-top: 18px;
-    margin-bottom: 8px;
-    color: #333;
-  }
+.nav-links a:hover{background:#e3f2fd;color:#0b3d91}
+.nav-links a.active{background:#0b3d91;color:#fff}
 
-  ul {
-    margin-left: 20px;
-    margin-top: 8px;
-  }
+/* ===== Content ===== */
+.content{
+  flex:1;
+  padding:40px;
+}
 
-  /* ===== Footer ===== */
-  footer {
-    background: #263238;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    font-size: 14px;
-  }
+.section-card{
+  background:#fff;
+  padding:28px;
+  border-radius:10px;
+  margin-bottom:40px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
 
-  html {
-    scroll-behavior: smooth;
-  }
+.section-card h2{color:#0b3d91;margin-bottom:10px}
+.section-card h3{margin-top:18px;margin-bottom:6px}
 
-  /* ===== Mobile ===== */
-  @media (max-width: 768px) {
-    nav {
-      width: 200px;
-    }
-    main {
-      padding: 20px;
-    }
+ul{margin-left:20px;margin-top:6px}
+
+/* ===== Footer ===== */
+footer{
+  text-align:center;
+  padding:14px;
+  background:#263238;
+  color:#fff;
+  font-size:14px;
+}
+
+/* ===== Mobile ===== */
+@media(max-width:900px){
+  .menu-btn{display:block}
+  .sidebar{
+    position:fixed;
+    left:-280px;
+    top:56px;
+    height:calc(100vh - 56px);
+    z-index:999;
   }
+  .sidebar.show{left:0}
+  .content{padding:22px}
+}
+
+html{scroll-behavior:smooth}
 </style>
 </head>
 
 <body>
 
 <header>
-  📘 Enterprise Documentation Hub
+  <div class="header-left">
+    <span class="menu-btn" onclick="toggleMenu()">☰</span>
+    📘 Enterprise Docs Portal
+  </div>
+  <div>DevOps Knowledge Base</div>
 </header>
 
-<div class="container">
+<div class="layout">
 
   <!-- ===== Sidebar ===== -->
-  <nav>
-    <h3>Contents</h3>
+  <aside class="sidebar" id="sidebar">
 
-    <a href="#intro">Introduction</a>
-    <a href="#jenkins">Jenkins Pipeline</a>
-    <a href="#more">Add More Topics</a>
-  </nav>
+    <input type="text" class="search-box" placeholder="Search topics..." onkeyup="filterMenu(this.value)">
 
-  <!-- ===== Main Content ===== -->
-  <main>
+    <div class="nav-group">
+      <div class="group-title" onclick="toggleGroup(this)">Getting Started</div>
+      <div class="nav-links">
+        <a href="#intro">Introduction</a>
+      </div>
+    </div>
 
-    <!-- ===== Intro ===== -->
-    <section id="intro">
+    <div class="nav-group">
+      <div class="group-title" onclick="toggleGroup(this)">CI/CD Pipelines</div>
+      <div class="nav-links">
+        <a href="#jenkins">Jenkins Pipeline</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="group-title" onclick="toggleGroup(this)">More Topics</div>
+      <div class="nav-links">
+        <a href="#more">Add More Topics</a>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ===== Content ===== -->
+  <main class="content">
+
+    <section id="intro" class="section-card">
       <h2>Introduction</h2>
       <p>
-        Welcome to the enterprise documentation portal. Use the navigation
-        menu to explore different technical topics and implementation guides.
+        Welcome to the enterprise documentation portal designed for scalable
+        DevOps and implementation teams.
       </p>
     </section>
 
-    <!-- ===== Jenkins Topic ===== -->
-    <section id="jenkins">
+    <section id="jenkins" class="section-card">
       <h2>Jenkins Pipeline for Microservice Build and Deployment</h2>
 
       <p>
@@ -177,87 +191,69 @@
       </p>
 
       <h3>Overview</h3>
-      <p>
-        This Jenkins <strong>Declarative CI pipeline</strong> standardizes the build
-        and integration process for Java-based microservices.
-      </p>
+      <p>This Jenkins Declarative CI pipeline standardizes Java microservice build and integration.</p>
 
-      <p>It automates:</p>
       <ul>
         <li>Source code checkout</li>
         <li>Build and unit testing</li>
-        <li>Code quality and security scans</li>
-        <li>Artifact publishing (JAR and Docker images)</li>
-        <li>Triggering downstream CD pipelines</li>
-      </ul>
-
-      <p>
-        The pipeline is designed to be <strong>centrally governed</strong> by the
-        Middleware / DevOps team and consumed by implementation teams with minimal configuration.
-      </p>
-
-      <h3>Who Should Read This?</h3>
-      <ul>
-        <li><strong>Implementation Teams</strong> – to onboard and use the pipeline</li>
-        <li><strong>Middleware / DevOps Team</strong> – to configure and maintain CI Jenkins</li>
-        <li><strong>Managers / Leads</strong> – to understand responsibilities and flow</li>
+        <li>Quality and security scans</li>
+        <li>Artifact publishing</li>
+        <li>Trigger downstream CD</li>
       </ul>
 
       <h3>Ownership & Responsibilities</h3>
-      <h3>Middleware / DevOps Team (Jenkins Owners)</h3>
-
-      <p>Responsible for central and one-time setup:</p>
       <ul>
         <li>Jenkins server and agent configuration</li>
-        <li>Jenkins plugin installation</li>
-        <li>Jenkins global tools (Java, Maven, NodeJS)</li>
-        <li>Docker installation on Jenkins agents</li>
-        <li>SonarQube server integration and webhook configuration</li>
-        <li>Artifactory (JFrog) access</li>
-        <li>Jenkins credentials creation and maintenance</li>
-        <li>Dependency-Track server setup (if enabled)</li>
-        <li>Creation of CI and downstream CD Jenkins jobs</li>
+        <li>Plugin and global tools setup</li>
+        <li>Docker installation on agents</li>
+        <li>SonarQube integration</li>
+        <li>JFrog access configuration</li>
       </ul>
     </section>
 
-    <!-- ===== Placeholder for future topics ===== -->
-    <section id="more">
+    <section id="more" class="section-card">
       <h2>Add More Topics</h2>
-      <p>
-        You can easily add more documentation sections by copying a section block
-        and updating the sidebar navigation.
-      </p>
+      <p>Extend the portal by adding new navigation items and sections.</p>
     </section>
 
   </main>
 </div>
 
 <footer>
-  © 2026 Enterprise Docs | Built for DevOps & Implementation Teams
+  © 2026 Enterprise DevOps Docs
 </footer>
 
 <script>
-  // ===== Active menu highlight =====
-  const sections = document.querySelectorAll("section");
-  const navLinks = document.querySelectorAll("nav a");
+function toggleMenu(){
+  document.getElementById("sidebar").classList.toggle("show");
+}
 
-  window.addEventListener("scroll", () => {
-    let current = "";
+function toggleGroup(el){
+  const links = el.nextElementSibling;
+  links.style.display = links.style.display === "none" ? "block" : "none";
+}
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (pageYOffset >= sectionTop) {
-        current = section.getAttribute("id");
-      }
-    });
-
-    navLinks.forEach(a => {
-      a.classList.remove("active");
-      if (a.getAttribute("href") === "#" + current) {
-        a.classList.add("active");
-      }
-    });
+function filterMenu(val){
+  val = val.toLowerCase();
+  document.querySelectorAll(".nav-links a").forEach(a=>{
+    a.style.display = a.textContent.toLowerCase().includes(val) ? "block":"none";
   });
+}
+
+/* active link */
+const sections=document.querySelectorAll("section");
+const navLinks=document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll",()=>{
+  let current="";
+  sections.forEach(sec=>{
+    if(pageYOffset>=sec.offsetTop-120){current=sec.id;}
+  });
+  navLinks.forEach(a=>{
+    a.classList.remove("active");
+    if(a.getAttribute("href")==="#"+current){a.classList.add("active");}
+  });
+});
 </script>
 
 </body>
